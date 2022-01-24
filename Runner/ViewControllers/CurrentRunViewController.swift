@@ -135,6 +135,7 @@ class CurrentRunViewController: BaseViewController {
         v.isUserInteractionEnabled = true
         v.image = UIImage(systemName: "dot.arrowtriangles.up.right.down.left.circle")
         v.tintColor = .white
+        v.layer.borderColor = UIColor.white.cgColor
         v.layer.borderWidth = 5
         v.layer.cornerRadius = 25
         v.layer.masksToBounds = true
@@ -164,6 +165,7 @@ class CurrentRunViewController: BaseViewController {
     
     private var locationManager = LocationManager()
     private var timer = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -181,7 +183,7 @@ class CurrentRunViewController: BaseViewController {
     }
     private func setupViews(){
         view.addSubview(topLabel)
-        view.addSubview(paceStackView)
+        view.addSubview(pageStackView)
         view.addSubview(capsuleView)
         capsuleView.addSubview(stopSliderKnob)
         capsuleView.addSubview(sliderStop)
@@ -203,6 +205,7 @@ class CurrentRunViewController: BaseViewController {
             pageStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageStackView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 8)
         ])
+        
         NSLayoutConstraint.activate([
             capsuleView.widthAnchor.constraint(equalToConstant: 300),
             capsuleView.heightAnchor.constraint(equalToConstant: 70),

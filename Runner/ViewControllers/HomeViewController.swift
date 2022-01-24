@@ -60,7 +60,7 @@ class HomeViewController: BaseViewController {
     //MARK: - Helpers
     @objc private func startRunning(){
         let currentRunVC = CurrentRunViewController()
-        currentRunVC.modalPresentationStyle = .automatic
+        currentRunVC.modalPresentationStyle = .fullScreen
         present(currentRunVC, animated: true)
     }
     private func setupViews(){
