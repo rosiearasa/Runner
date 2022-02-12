@@ -27,7 +27,7 @@ class HistoryViewController: BaseViewController {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.allowsSelection = false
         v.dataSource = self
-        v.register(UITableViewCell.self, forCellReuseIdentifier: Self.reuseId)
+        v.register(HistoryTableViewCell.self, forCellReuseIdentifier: Self.reuseId)
         v.backgroundColor = .clear
         v.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         v.separatorColor = .white
@@ -75,7 +75,13 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource{
         return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Self.reuseId) as? HistoryTableViewCell else{
+            return UITableViewCell()
+        }
+        cell.totalMiles = Double(indexPath.row)
+        cell.totalTime = "0:23:33"
+        cell.entryDate = "02/10/2021"
+        return cell
     }
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

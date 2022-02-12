@@ -60,6 +60,7 @@ final class HistoryTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -72,8 +73,29 @@ final class HistoryTableViewCell: UITableViewCell {
         contentView.addSubview(entryDateLabel)
     }
     
-    private func setupConstrains(){
+    private func setupConstraints(){
+//        total miles
+        NSLayoutConstraint.activate([
+            totalMilesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            totalMilesLabel.topAnchor.constraint(equalTo:contentView.topAnchor, constant: 16)
+        ])
+//        total time label
+        NSLayoutConstraint.activate([
+            totalTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            totalMilesLabel.topAnchor.constraint(equalTo: totalMilesLabel.bottomAnchor, constant: 8),
+            totalMilesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        ])
+        //entry data label
+        NSLayoutConstraint.activate(
+            [entryDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+             entryDateLabel.centerYAnchor.constraint(equalTo: totalMilesLabel.centerYAnchor)
+        ])
+  
         
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupConstraints()
     }
     
 }
